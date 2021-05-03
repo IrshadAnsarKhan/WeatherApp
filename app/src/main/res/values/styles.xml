@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="style_text_normal">
+        <item name="android:textSize">@dimen/text_title_16</item>
+        <item name="android:textColor">@color/purple_700</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:lineSpacingExtra">@dimen/paragraph_space_10</item>
+    </style>
+
+</resources>
