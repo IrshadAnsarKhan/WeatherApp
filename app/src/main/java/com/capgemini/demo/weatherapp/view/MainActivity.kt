@@ -1,6 +1,7 @@
 package com.capgemini.demo.weatherapp.view
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import com.capgemini.demo.weatherapp.R
 import com.capgemini.demo.weatherapp.base.BaseActivity
 import com.capgemini.demo.weatherapp.home.HomeFragment
@@ -16,5 +17,9 @@ class MainActivity : BaseActivity() {
     private fun openHomeFragment() {
         val homeFragment = HomeFragment()
         replaceFragment(homeFragment)
+    }
+
+     public override fun addFragment(fragment: Fragment) {
+        super.addFragment(fragment)
     }
 }

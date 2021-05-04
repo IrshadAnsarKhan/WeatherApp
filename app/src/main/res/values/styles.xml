@@ -8,4 +8,20 @@
         <item name="android:lineSpacingExtra">@dimen/paragraph_space_10</item>
     </style>
 
+
+    <style name="style_title_sub_header">
+        <item name="android:textSize">@dimen/text_title_20</item>
+        <item name="android:textColor">@color/purple_700</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">@dimen/paragraph_space_12</item>
+    </style>
+
+
+    <style name="style_text_title_bold">
+        <item name="android:textSize">@dimen/text_title_16</item>
+        <item name="android:textColor">@color/purple_200</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:lineSpacingExtra">@dimen/paragraph_space_8</item>
+    </style>
+
 </resources>

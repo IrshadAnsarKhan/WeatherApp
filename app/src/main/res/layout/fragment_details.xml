@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/page_margin_24"
+    android:background="@color/fragment_background"
+    android:gravity="top|center_horizontal">
+
+    <TextView
+        android:id="@+id/tvAreaName"
+        style="@style/style_title_sub_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvCountry"
+        style="@style/style_title_sub_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvAreaName" />
+
+    <TextView
+        android:id="@+id/tvRegion"
+        style="@style/style_title_sub_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvCountry" />
+
+    <TextView
+        android:id="@+id/tvGeoLocation"
+        style="@style/style_title_sub_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvRegion" />
+
+    <TextView
+        android:id="@+id/tvPopulation"
+        style="@style/style_title_sub_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvGeoLocation" />
+
+    <TextView
+        android:id="@+id/tvWeatherUrl"
+        style="@style/style_title_sub_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPopulation" />
+</RelativeLayout>

@@ -20,7 +20,7 @@ open class BaseActivity : AppCompatActivity() {
         fragmentTransaction.commit()
     }
 
-    protected fun addFragment(fragment: Fragment) {
+    protected open fun addFragment(fragment: Fragment) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()
         fragmentTransaction.add(R.id.fragmentContainer, fragment)
         fragmentTransaction.addToBackStack(fragment.javaClass.canonicalName)

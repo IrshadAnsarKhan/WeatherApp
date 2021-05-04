@@ -2,9 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="@dimen/page_margin_24">
+    android:background="@color/fragment_background"
+    android:padding="@dimen/page_margin_24">
 
     <include
+        android:id="@+id/include_autocomplete_search_layout"
         layout="@layout/autocomplete_search_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />

@@ -10,4 +10,6 @@
 
     <!--SnackBar-->
     <color name="snack_bar_background_color">#0E273C</color>
+
+    <color name="fragment_background">#FFF</color>
 </resources>
