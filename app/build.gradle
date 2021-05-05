@@ -90,6 +90,10 @@ dependencies {
     kapt "androidx.room:room-compiler:2.3.0"
     implementation "androidx.room:room-ktx:2.3.0"
 
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
     /*Unit testing Dependencies*/
     testImplementation "junit:junit:4.13.2"
     testImplementation "org.mockito:mockito-core:3.0.0"

@@ -1,8 +1,7 @@
-package com.capgemini.demo.weatherapp
+package com.capgemini.demo.weatherapp.home
 
 import com.capgemini.demo.weatherapp.db.room.DatabaseHelper
 import com.capgemini.demo.weatherapp.factory.MockDataFactory
-import com.capgemini.demo.weatherapp.home.ApiRepository
 import com.capgemini.demo.weatherapp.home.viewmodel.HomeViewModel
 import com.capgemini.demo.weatherapp.utils.DataConverter
 import com.capgemini.demo.weatherapp.utils.InstantExecutorExtension
@@ -35,7 +34,7 @@ class HomeViewModelTest {
 
     @Test
     fun `test search api`() {
-        val apiResponseModel = MockDataFactory.getApiResponseModel()
+        val apiResponseModel = MockDataFactory.getSearchApiResponseModel()
         every {
             apiRepository.search(any())
         } returns Single.just(apiResponseModel)

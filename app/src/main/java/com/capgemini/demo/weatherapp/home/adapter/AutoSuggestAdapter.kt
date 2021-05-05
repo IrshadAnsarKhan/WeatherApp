@@ -11,7 +11,7 @@ import android.widget.Filterable
 import android.widget.TextView
 import androidx.annotation.LayoutRes
 import com.capgemini.demo.weatherapp.R
-import com.capgemini.demo.weatherapp.datamodel.Result
+import com.capgemini.demo.weatherapp.datamodel.search.Result
 import com.capgemini.demo.weatherapp.utils.DataConverter
 import com.capgemini.demo.weatherapp.utils.NotificationHelper
 

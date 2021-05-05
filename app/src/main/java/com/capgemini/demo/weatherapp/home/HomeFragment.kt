@@ -6,7 +6,6 @@ import android.os.Message
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,8 +17,7 @@ import com.capgemini.demo.weatherapp.R
 import com.capgemini.demo.weatherapp.api_service.WeatherApiRequest
 import com.capgemini.demo.weatherapp.base.BaseFragment
 import com.capgemini.demo.weatherapp.databinding.FragmentHomeBinding
-import com.capgemini.demo.weatherapp.datamodel.ApiResponseModel
-import com.capgemini.demo.weatherapp.datamodel.Result
+import com.capgemini.demo.weatherapp.datamodel.search.Result
 import com.capgemini.demo.weatherapp.db.model.WeatherRoomDataModel
 import com.capgemini.demo.weatherapp.db.room.DatabaseBuilder
 import com.capgemini.demo.weatherapp.db.room.DatabaseHelperImpl

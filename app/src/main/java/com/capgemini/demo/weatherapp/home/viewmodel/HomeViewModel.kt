@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.capgemini.demo.weatherapp.base.BaseApiResponseModel
-import com.capgemini.demo.weatherapp.datamodel.ApiResponseModel
-import com.capgemini.demo.weatherapp.datamodel.Result
+import com.capgemini.demo.weatherapp.datamodel.search.SearchApiResponseModel
+import com.capgemini.demo.weatherapp.datamodel.search.Result
 import com.capgemini.demo.weatherapp.db.model.WeatherRoomDataModel
 import com.capgemini.demo.weatherapp.db.room.DatabaseHelper
 import com.capgemini.demo.weatherapp.home.ApiRepository
@@ -19,10 +19,10 @@ class HomeViewModel(
     private val apiRepository: ApiRepository, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
-    private val cityMutableLiveData: MutableLiveData<BaseApiResponseModel<ApiResponseModel>> =
+    private val cityMutableLiveData: MutableLiveData<BaseApiResponseModel<SearchApiResponseModel>> =
         MutableLiveData()
 
-    fun getCityMutableLiveData(): MutableLiveData<BaseApiResponseModel<ApiResponseModel>> {
+    fun getCityMutableLiveData(): MutableLiveData<BaseApiResponseModel<SearchApiResponseModel>> {
         return cityMutableLiveData;
     }
 
@@ -34,9 +34,9 @@ class HomeViewModel(
     }
 
     fun searchProductsResponseLiveData(searchQuery: String) {
-        val baseApiResponseModelSingle: Single<ApiResponseModel?>? =
+        val baseSearchApiResponseModelSingle: Single<SearchApiResponseModel?>? =
             apiRepository.search(searchQuery);
-        LiveDataUtils.updateStatus(cityMutableLiveData, baseApiResponseModelSingle)
+        LiveDataUtils.updateStatus(cityMutableLiveData, baseSearchApiResponseModelSingle)
     }
 
     fun fetchSearchedData() {
@@ -65,6 +65,6 @@ class HomeViewModel(
     }
 
     fun filterData(it: Any, dataConverter: DataConverter): ArrayList<Result>? {
-        return dataConverter.convertToSearchModelList(it as ApiResponseModel)
+        return dataConverter.convertToSearchModelList(it as SearchApiResponseModel)
     }
 }

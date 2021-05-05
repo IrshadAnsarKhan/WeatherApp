@@ -1,17 +1,17 @@
 package com.capgemini.demo.weatherapp.factory
 
-import com.capgemini.demo.weatherapp.datamodel.*
+import com.capgemini.demo.weatherapp.datamodel.search.*
 import com.capgemini.demo.weatherapp.db.model.WeatherRoomDataModel
 
 class MockDataFactory {
 
     companion object {
 
-        fun getApiResponseModel(): ApiResponseModel {
+        fun getSearchApiResponseModel(): SearchApiResponseModel {
             val results: ArrayList<Result> = ArrayList()
             results.add(getResultModel())
             val searchApi = Search_api(results)
-            return ApiResponseModel(searchApi);
+            return SearchApiResponseModel(searchApi);
         }
 
         fun getWeatherRoomDataModel(): WeatherRoomDataModel {

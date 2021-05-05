@@ -43,7 +43,7 @@ class DataConverterTest {
 
     @Test
     fun `test prepare database id from result`() {
-        val expectedID = "area-region-country"
+        val expectedID = "area, region"
         val result = MockDataFactory.getResultModel()
         val actualId = dataConverter.prepareDatabaseIdFromResult(result)
 
