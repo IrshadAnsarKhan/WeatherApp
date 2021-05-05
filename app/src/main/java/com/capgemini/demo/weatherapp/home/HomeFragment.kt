@@ -76,7 +76,6 @@ class HomeFragment : BaseFragment() {
         super.onResume()
         binding.includeAutocompleteSearchLayout.autoCompleteSearch.text.clear()
         homeViewModel.fetchSearchedData()
-        Log.d("Irshad", "onResume")
     }
 
 
@@ -141,8 +140,7 @@ class HomeFragment : BaseFragment() {
                 if (baseApiResponseModel != null && baseApiResponseModel.isSuccessful) {
                     val apiResponseData = baseApiResponseModel.apiResponseData
                     apiResponseData?.let {
-                        val filteredData = DataConverter()
-                            .convertToSearchModelList(it as ApiResponseModel)
+                        val filteredData = homeViewModel.filterData(it, dataConverter)
                         populateSearchListData(filteredData)
                     }
 

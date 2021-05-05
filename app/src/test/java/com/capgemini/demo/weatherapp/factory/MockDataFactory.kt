@@ -16,7 +16,7 @@ class MockDataFactory {
 
         fun getWeatherRoomDataModel(): WeatherRoomDataModel {
             val responseModel = WeatherRoomDataModel(
-                "area-country", "area", "country",
+                "area-region-country", "area", "country",
                 "region", "11.11", "22.22", "10000", "https://test.url", 1000L)
             return responseModel;
         }

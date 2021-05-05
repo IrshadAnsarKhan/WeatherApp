@@ -31,7 +31,31 @@ class DataConverterTest {
         Assertions.assertEquals(expectedWeatherModel.country, actualWeatherRoomDataModel.country)
         Assertions.assertEquals(expectedWeatherModel.region, actualWeatherRoomDataModel.region)
         Assertions.assertEquals(expectedWeatherModel.latitude, actualWeatherRoomDataModel.latitude)
-        Assertions.assertEquals(expectedWeatherModel.longitude, actualWeatherRoomDataModel.longitude)
-        Assertions.assertEquals(expectedWeatherModel.weatherUrl, actualWeatherRoomDataModel.weatherUrl)
+        Assertions.assertEquals(
+            expectedWeatherModel.longitude,
+            actualWeatherRoomDataModel.longitude
+        )
+        Assertions.assertEquals(
+            expectedWeatherModel.weatherUrl,
+            actualWeatherRoomDataModel.weatherUrl
+        )
+    }
+
+    @Test
+    fun `test prepare database id from result`() {
+        val expectedID = "area-region-country"
+        val result = MockDataFactory.getResultModel()
+        val actualId = dataConverter.prepareDatabaseIdFromResult(result)
+
+        Assertions.assertEquals(expectedID, actualId)
+    }
+
+    @Test
+    fun `test prepare display id from result`() {
+        val expectedID = "area, region, country"
+        val result = MockDataFactory.getResultModel()
+        val actualId = dataConverter.prepareDisplayIdFromResult(result)
+
+        Assertions.assertEquals(expectedID, actualId)
     }
 }

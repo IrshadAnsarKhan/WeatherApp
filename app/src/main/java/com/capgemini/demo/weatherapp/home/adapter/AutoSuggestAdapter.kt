@@ -12,6 +12,7 @@ import android.widget.TextView
 import androidx.annotation.LayoutRes
 import com.capgemini.demo.weatherapp.R
 import com.capgemini.demo.weatherapp.datamodel.Result
+import com.capgemini.demo.weatherapp.utils.DataConverter
 import com.capgemini.demo.weatherapp.utils.NotificationHelper
 
 class AutoSuggestAdapter(context: Context, @LayoutRes private val layoutResource: Int) :
@@ -19,6 +20,7 @@ class AutoSuggestAdapter(context: Context, @LayoutRes private val layoutResource
     Filterable {
 
     private var citiesData: MutableList<Result>? = ArrayList()
+    private val dataConverter = DataConverter()
 
     fun setData(list: List<Result>?) {
         citiesData!!.clear()
@@ -77,7 +79,7 @@ class AutoSuggestAdapter(context: Context, @LayoutRes private val layoutResource
     }
 
     private fun prepareDropdownText(result: Result): String {
-        return result.areaName[0].value + ", " + result.country[0].value
+        return dataConverter.prepareDisplayIdFromResult(result)
     }
 
     private fun showNoDataSnackBarMessage() {

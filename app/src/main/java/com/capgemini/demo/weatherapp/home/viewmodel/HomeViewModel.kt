@@ -13,10 +13,10 @@ import com.capgemini.demo.weatherapp.utils.DataConverter
 import com.capgemini.demo.weatherapp.utils.LiveDataUtils
 import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.launch
+import java.util.ArrayList
 
 class HomeViewModel(
-    private val apiRepository: ApiRepository,
-    private val dbHelper: DatabaseHelper
+    private val apiRepository: ApiRepository, private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
     private val cityMutableLiveData: MutableLiveData<BaseApiResponseModel<ApiResponseModel>> =
@@ -44,10 +44,7 @@ class HomeViewModel(
             try {
                 val usersFromDb = dbHelper.fetchSearchData()
                 dbDataMutableLiveData.postValue(usersFromDb)
-                // here you have your usersFromDb
-
             } catch (e: Exception) {
-                // handler error
                 e.printStackTrace()
             }
         }
@@ -65,5 +62,9 @@ class HomeViewModel(
                 e.printStackTrace()
             }
         }
+    }
+
+    fun filterData(it: Any, dataConverter: DataConverter): ArrayList<Result>? {
+        return dataConverter.convertToSearchModelList(it as ApiResponseModel)
     }
 }

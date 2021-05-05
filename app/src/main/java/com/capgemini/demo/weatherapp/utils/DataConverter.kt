@@ -14,10 +14,9 @@ class DataConverter {
     }
 
     fun convertToDbModel(result: Result): WeatherRoomDataModel {
-        val id: String = result.areaName[0].value + "-" + result.country[0].value
 
         return WeatherRoomDataModel(
-            id,
+            prepareDatabaseIdFromResult(result),
             result.areaName[0].value,
             result.country[0].value,
             result.region[0].value,
@@ -27,6 +26,14 @@ class DataConverter {
             result.weatherUrl[0].value,
             System.currentTimeMillis()
         )
+    }
+
+    fun prepareDatabaseIdFromResult(result: Result): String {
+        return result.areaName[0].value + "-" + result.region[0].value + "-" +result.country[0].value
+    }
+
+    fun prepareDisplayIdFromResult(result: Result): String {
+        return result.areaName[0].value + ", " + result.region[0].value + ", " +result.country[0].value
     }
 
 }
