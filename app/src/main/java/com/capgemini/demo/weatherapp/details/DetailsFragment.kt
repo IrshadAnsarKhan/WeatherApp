@@ -42,8 +42,8 @@ class DetailsFragment : BaseFragment() {
         binding.tvCountry.text = roomDataModel.country
         binding.tvRegion.text = roomDataModel.region
         binding.tvWeatherUrl.text = roomDataModel.weatherUrl
-        binding.tvGeoLocation.text = detailsViewModel.getGeoLocationText(roomDataModel)
         binding.tvPopulation.text = roomDataModel.population
+        binding.tvGeoLocation.text = detailsViewModel.getGeoLocationText(roomDataModel)
     }
 
 }

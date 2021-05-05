@@ -30,9 +30,9 @@ class DataConverter {
             result.country[0].value,
             result.region[0].value,
             result.latitude.toString(),
-            result.latitude.toString(),
+            result.longitude.toString(),
             result.population.toString(),
-            result.weatherUrl.toString(),
+            result.weatherUrl[0].value,
             System.currentTimeMillis()
         )
     }

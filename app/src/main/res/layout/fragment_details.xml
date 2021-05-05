@@ -2,48 +2,156 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/page_margin_24"
     android:background="@color/fragment_background"
-    android:gravity="top|center_horizontal">
+    android:gravity="top|center_horizontal"
+    android:padding="@dimen/page_margin_24">
 
-    <TextView
-        android:id="@+id/tvAreaName"
-        style="@style/style_title_sub_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/tvCountry"
-        style="@style/style_title_sub_header"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llytAreaName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvAreaName" />
+        android:layout_marginTop="@dimen/view_padding_10"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvRegion"
-        style="@style/style_title_sub_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvCountry" />
+        <TextView
+            android:id="@+id/tvAreaNameLabel"
+            style="@style/style_title_sub_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/view_padding_10"
+            android:layout_marginRight="@dimen/view_padding_10"
+            android:text="@string/area" />
 
-    <TextView
-        android:id="@+id/tvGeoLocation"
-        style="@style/style_title_sub_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tvRegion" />
+        <TextView
+            android:id="@+id/tvAreaName"
+            style="@style/style_title_sub_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvPopulation"
-        style="@style/style_title_sub_header"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/llytCountry"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvGeoLocation" />
+        android:layout_below="@+id/llytAreaName"
+        android:layout_marginTop="@dimen/view_padding_10"
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvWeatherUrl"
-        style="@style/style_title_sub_header"
-        android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/tvCountryLabel"
+            style="@style/style_title_sub_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/view_padding_10"
+            android:layout_marginRight="@dimen/view_padding_10"
+            android:text="@string/country" />
+
+        <TextView
+            android:id="@+id/tvCountry"
+            style="@style/style_title_sub_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llytRegion"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvPopulation" />
+        android:layout_below="@+id/llytCountry"
+        android:layout_marginTop="@dimen/view_padding_10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvRegionLabel"
+            style="@style/style_title_sub_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/view_padding_10"
+            android:layout_marginRight="@dimen/view_padding_10"
+            android:text="@string/region" />
+
+        <TextView
+            android:id="@+id/tvRegion"
+            style="@style/style_title_sub_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llytGeoLocation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llytRegion"
+        android:layout_marginTop="@dimen/view_padding_10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvGeoLocationLabel"
+            style="@style/style_title_sub_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/view_padding_10"
+            android:layout_marginRight="@dimen/view_padding_10"
+            android:text="@string/geo_locatiom" />
+
+
+        <TextView
+            android:id="@+id/tvGeoLocation"
+            style="@style/style_title_sub_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llytPopulation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llytGeoLocation"
+        android:layout_marginTop="@dimen/view_padding_10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvPopulationLabel"
+            style="@style/style_title_sub_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/view_padding_10"
+            android:layout_marginRight="@dimen/view_padding_10"
+            android:text="@string/population" />
+
+        <TextView
+            android:id="@+id/tvPopulation"
+            style="@style/style_title_sub_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/llytWeatherUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llytPopulation"
+        android:layout_marginTop="@dimen/view_padding_10"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvWeatherUrlLabel"
+            style="@style/style_title_sub_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/view_padding_10"
+            android:layout_marginRight="@dimen/view_padding_10"
+            android:text="@string/web_link" />
+
+        <TextView
+            android:id="@+id/tvWeatherUrl"
+            style="@style/style_title_sub_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
 </RelativeLayout>

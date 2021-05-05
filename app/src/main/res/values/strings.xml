@@ -13,4 +13,12 @@
     <string name="search_no_result_found">No results found</string>
     <string name="recent_search">Recent searched cities : </string>
 
+    <string name="area">AreaName : </string>
+    <string name="country">Country : </string>
+    <string name="region">Region : </string>
+    <string name="geo_locatiom">Geo-Location : </string>
+    <string name="population">Population : </string>
+    <string name="web_link">Web-Link : </string>
+
+
 </resources>
