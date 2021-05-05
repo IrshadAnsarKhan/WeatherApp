@@ -11,5 +11,6 @@
 
     <string name="something_went_wrong">Something went wrong. Please try again later</string>
     <string name="search_no_result_found">No results found</string>
+    <string name="recent_search">Recent searched cities : </string>
 
 </resources>

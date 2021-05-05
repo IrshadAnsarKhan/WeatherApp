@@ -2,10 +2,16 @@ package com.capgemini.demo.weatherapp.home.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.capgemini.demo.weatherapp.db.room.DatabaseHelper
 import com.capgemini.demo.weatherapp.home.ApiRepository
+import com.capgemini.demo.weatherapp.utils.DataConverter
 
-class HomeViewModelFactory(private val apiRepository: ApiRepository) : ViewModelProvider.Factory {
+class HomeViewModelFactory(
+    private val apiRepository: ApiRepository,
+    private val dbHelper: DatabaseHelper,
+    private val dataConverter: DataConverter
+) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return HomeViewModel(apiRepository) as T
+        return HomeViewModel(apiRepository, dbHelper, dataConverter) as T
     }
 }

@@ -7,14 +7,15 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.capgemini.demo.weatherapp.base.BaseFragment
 import com.capgemini.demo.weatherapp.databinding.FragmentDetailsBinding
-import com.capgemini.demo.weatherapp.datamodel.Result
+import com.capgemini.demo.weatherapp.db.model.WeatherRoomDataModel
 import com.capgemini.demo.weatherapp.details.viewmodel.DetailsViewModel
+import com.capgemini.demo.weatherapp.home.HomeFragment
 
 class DetailsFragment : BaseFragment() {
 
     private lateinit var detailsViewModel: DetailsViewModel
     private lateinit var binding: FragmentDetailsBinding
-    private var result: Result? = null
+    private var roomDataModel: WeatherRoomDataModel? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,23 +26,24 @@ class DetailsFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        result = arguments?.let { detailsViewModel.getData(it) }
-        populateResult(result)
+        roomDataModel = arguments?.let { detailsViewModel.getData(it) }
+        roomDataModel?.let { populateResult(it) }
     }
 
-    private fun populateResult(result: Result?) {
-        binding.tvAreaName.text = result?.areaName?.get(0)?.value
-        binding.tvCountry.text = result?.country?.get(0)?.value
-        binding.tvRegion.text = result?.region?.get(0)?.value
-        binding.tvWeatherUrl.text = result?.weatherUrl?.get(0)?.value
-        binding.tvGeoLocation.text = detailsViewModel.getGeoLocationText(result)
-        binding.tvPopulation.text = result?.population?.toString()
+    private fun populateResult(roomDataModel: WeatherRoomDataModel) {
+        binding.tvAreaName.text = roomDataModel.areaName
+        binding.tvCountry.text = roomDataModel.country
+        binding.tvRegion.text = roomDataModel.region
+        binding.tvWeatherUrl.text = roomDataModel.weatherUrl
+        binding.tvGeoLocation.text = detailsViewModel.getGeoLocationText(roomDataModel)
+        binding.tvPopulation.text = roomDataModel.population
     }
+
 }

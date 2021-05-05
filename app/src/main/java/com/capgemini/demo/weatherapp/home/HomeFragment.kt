@@ -6,6 +6,7 @@ import android.os.Message
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,8 +20,12 @@ import com.capgemini.demo.weatherapp.base.BaseFragment
 import com.capgemini.demo.weatherapp.databinding.FragmentHomeBinding
 import com.capgemini.demo.weatherapp.datamodel.ApiResponseModel
 import com.capgemini.demo.weatherapp.datamodel.Result
+import com.capgemini.demo.weatherapp.db.model.WeatherRoomDataModel
+import com.capgemini.demo.weatherapp.db.room.DatabaseBuilder
+import com.capgemini.demo.weatherapp.db.room.DatabaseHelperImpl
 import com.capgemini.demo.weatherapp.details.DetailsFragment
 import com.capgemini.demo.weatherapp.home.adapter.AutoSuggestAdapter
+import com.capgemini.demo.weatherapp.home.adapter.RecentSearchRecyclerViewAdapter
 import com.capgemini.demo.weatherapp.home.viewmodel.HomeViewModel
 import com.capgemini.demo.weatherapp.home.viewmodel.HomeViewModelFactory
 import com.capgemini.demo.weatherapp.retrofit.WeatherApiRetrofit
@@ -37,6 +42,8 @@ class HomeFragment : BaseFragment() {
     private val TRIGGER_AUTO_COMPLETE = 100
     private val AUTO_COMPLETE_DELAY: Long = 300
     private var handler: Handler? = null
+    private lateinit var dataConverter: DataConverter
+    private lateinit var adapter: RecentSearchRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +51,9 @@ class HomeFragment : BaseFragment() {
         val apiRequest = WeatherApiRetrofit().getRetrofitInstance(requireContext())
             .create(WeatherApiRequest::class.java)
         val apiRepository = ApiRepository(apiRequest)
-        val factory = HomeViewModelFactory(apiRepository)
+        val dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(requireContext()))
+        dataConverter = DataConverter()
+        val factory = HomeViewModelFactory(apiRepository, dbHelper, dataConverter)
         homeViewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
     }
 
@@ -59,7 +68,15 @@ class HomeFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initObservers()
         setupSearchAutoCompleteView(binding.includeAutocompleteSearchLayout.autoCompleteSearch)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.includeAutocompleteSearchLayout.autoCompleteSearch.text.clear()
+        homeViewModel.fetchSearchedData()
+        Log.d("Irshad", "onResume")
     }
 
 
@@ -72,10 +89,8 @@ class HomeFragment : BaseFragment() {
         autoCompleteTextView.threshold = 3
         autoCompleteTextView.setAdapter(autoSuggestAdapter)
         autoCompleteTextView.onItemClickListener =
-            OnItemClickListener { parent: AdapterView<*>?, view: View?, position: Int, id: Long ->
-                openDetailsFragment(
-                    autoSuggestAdapter.getObject(position)
-                )
+            OnItemClickListener { _: AdapterView<*>?, _: View?, position: Int, _: Long ->
+                onAutoCompleteRowClick(autoSuggestAdapter.getObject(position))
             }
 
         autoCompleteTextView.addTextChangedListener(object : TextWatcher {
@@ -102,7 +117,25 @@ class HomeFragment : BaseFragment() {
     }
 
 
-    private fun fetchSearchDataFromApi(searchQuery: String) {
+    private fun onAutoCompleteRowClick(result: Result) {
+        binding.includeAutocompleteSearchLayout.autoCompleteSearch.text.clear()
+        (activity as MainActivity).hideKeyboard()
+        val weatherRoomDataModel = homeViewModel.convertToDbModel(result)
+        homeViewModel.insertData(weatherRoomDataModel)
+        homeViewModel.fetchSearchedData()
+        openDetailsFragment(weatherRoomDataModel)
+    }
+
+    private fun initObservers() {
+
+        homeViewModel.getDbDataMutableLiveData().observe(viewLifecycleOwner) {
+            if (it != null && it.isNotEmpty()) {
+                showRecentSearchList(it)
+            } else {
+                showNoRecentSearchDataUI()
+            }
+
+        }
         homeViewModel.getCityMutableLiveData()
             .observe(viewLifecycleOwner) { baseApiResponseModel ->
                 if (baseApiResponseModel != null && baseApiResponseModel.isSuccessful) {
@@ -119,11 +152,26 @@ class HomeFragment : BaseFragment() {
                     NotificationHelper().setSnackBar(binding.root, errorMsgString)
                 }
             }
+    }
 
+    private fun showNoRecentSearchDataUI() {
+        binding.recyclerView.visibility = View.GONE
+        binding.tvNoData.visibility = View.VISIBLE
+    }
+
+    private fun showRecentSearchList(weatherData: List<WeatherRoomDataModel>) {
+        adapter = RecentSearchRecyclerViewAdapter(this, weatherData)
+        binding.recyclerView.visibility = View.VISIBLE
+        binding.tvNoData.visibility = View.GONE
+        binding.recyclerView.adapter = adapter
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun fetchSearchDataFromApi(searchQuery: String) {
         homeViewModel.searchProductsResponseLiveData(searchQuery)
     }
 
-    private fun openDetailsFragment(selectedCity: Result) {
+    private fun openDetailsFragment(selectedCity: WeatherRoomDataModel) {
         val detailsFragment = DetailsFragment()
         val bundle = Bundle()
         bundle.putSerializable("selectedCity", selectedCity)
@@ -134,6 +182,10 @@ class HomeFragment : BaseFragment() {
     private fun populateSearchListData(cities: ArrayList<Result>?) {
         autoSuggestAdapter.setData(cities)
         autoSuggestAdapter.notifyDataSetChanged()
+    }
+
+    fun onRowItemClicked(weatherRoomDataModel: WeatherRoomDataModel) {
+        openDetailsFragment(weatherRoomDataModel)
     }
 
 }
