@@ -53,7 +53,7 @@ class HomeFragment : BaseFragment() {
         val apiRepository = ApiRepository(apiRequest)
         val dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(requireContext()))
         dataConverter = DataConverter()
-        val factory = HomeViewModelFactory(apiRepository, dbHelper, dataConverter)
+        val factory = HomeViewModelFactory(apiRepository, dbHelper)
         homeViewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
     }
 
@@ -120,7 +120,7 @@ class HomeFragment : BaseFragment() {
     private fun onAutoCompleteRowClick(result: Result) {
         binding.includeAutocompleteSearchLayout.autoCompleteSearch.text.clear()
         (activity as MainActivity).hideKeyboard()
-        val weatherRoomDataModel = homeViewModel.convertToDbModel(result)
+        val weatherRoomDataModel = homeViewModel.convertToDbModel(result, dataConverter)
         homeViewModel.insertData(weatherRoomDataModel)
         homeViewModel.fetchSearchedData()
         openDetailsFragment(weatherRoomDataModel)

@@ -89,4 +89,21 @@ dependencies {
     implementation "androidx.room:room-runtime:2.3.0"
     kapt "androidx.room:room-compiler:2.3.0"
     implementation "androidx.room:room-ktx:2.3.0"
+
+    /*Unit testing Dependencies*/
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "org.mockito:mockito-core:3.0.0"
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testImplementation "org.junit.jupiter:junit-jupiter-params:5.7.0"
+    testImplementation "io.mockk:mockk:1.10.5"
+    testImplementation "com.squareup.okhttp3:mockwebserver:4.9.0"
+    testImplementation 'org.robolectric:robolectric:4.4'
+    testImplementation 'androidx.test:core:1.3.0'
+    testImplementation 'androidx.test.ext:junit:1.1.2'
+    testImplementation 'androidx.test:runner:1.3.0'
+
+    testImplementation "org.assertj:assertj-core:3.12.2"
+
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:5.7.0"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:5.7.0"
 }

@@ -16,8 +16,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val apiRepository: ApiRepository,
-    private val dbHelper: DatabaseHelper,
-    private val dataConverter: DataConverter,
+    private val dbHelper: DatabaseHelper
 ) : ViewModel() {
 
     private val cityMutableLiveData: MutableLiveData<BaseApiResponseModel<ApiResponseModel>> =
@@ -54,7 +53,7 @@ class HomeViewModel(
         }
     }
 
-    fun convertToDbModel(result: Result): WeatherRoomDataModel {
+    fun convertToDbModel(result: Result, dataConverter: DataConverter): WeatherRoomDataModel {
         return dataConverter.convertToDbModel(result)
     }
 

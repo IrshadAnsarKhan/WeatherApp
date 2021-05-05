@@ -8,10 +8,9 @@ import com.capgemini.demo.weatherapp.utils.DataConverter
 
 class HomeViewModelFactory(
     private val apiRepository: ApiRepository,
-    private val dbHelper: DatabaseHelper,
-    private val dataConverter: DataConverter
+    private val dbHelper: DatabaseHelper
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return HomeViewModel(apiRepository, dbHelper, dataConverter) as T
+        return HomeViewModel(apiRepository, dbHelper) as T
     }
 }
