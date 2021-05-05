@@ -13,6 +13,8 @@ import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.AutoCompleteTextView
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.capgemini.demo.weatherapp.R
 import com.capgemini.demo.weatherapp.api_service.WeatherApiRequest
 import com.capgemini.demo.weatherapp.base.BaseFragment
@@ -158,6 +160,11 @@ class HomeFragment : BaseFragment() {
     private fun showRecentSearchList(weatherData: List<WeatherRoomDataModel>) {
         adapter = RecentSearchRecyclerViewAdapter(this, weatherData)
         binding.recyclerView.visibility = View.VISIBLE
+        val linearLayoutManager = LinearLayoutManager(requireContext())
+        val itemDecoration =
+            DividerItemDecoration(requireContext(), linearLayoutManager.orientation)
+        binding.recyclerView.layoutManager = linearLayoutManager
+        binding.recyclerView.addItemDecoration(itemDecoration)
         binding.tvNoData.visibility = View.GONE
         binding.recyclerView.adapter = adapter
         adapter.notifyDataSetChanged()
