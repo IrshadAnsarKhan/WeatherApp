@@ -41,4 +41,23 @@ class AppDatabaseTest : TestCase() {
         Assertions.assertThat(weatherRoomDataModels.contains(weatherRoomDataModel)).isTrue
     }
 
+    @Test
+    fun `test DB duplicate insertSearchData query`(): Unit = runBlocking {
+        val weatherRoomDataModel = MockDataFactory.getWeatherRoomDataModel()
+        weatherDao.insert(weatherRoomDataModel)
+        weatherDao.insert(weatherRoomDataModel)
+        val weatherRoomDataModels = weatherDao.fetchSearchData()
+        org.junit.jupiter.api.Assertions.assertEquals(weatherRoomDataModels.size, 1)
+    }
+
+    @Test
+    fun `test DB fetchSearchData query should give only 10 results`(): Unit = runBlocking {
+        for (i in 1 until 15) {
+            val weatherRoomDataModel = MockDataFactory.getWeatherRoomDataModel("id-$i")
+            weatherDao.insert(weatherRoomDataModel)
+        }
+        val weatherRoomDataModels = weatherDao.fetchSearchData()
+        org.junit.jupiter.api.Assertions.assertEquals(weatherRoomDataModels.size, 10)
+    }
+
 }
