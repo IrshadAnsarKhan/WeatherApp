@@ -3,12 +3,12 @@ package com.capgemini.demo.weatherapp.base
 
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.capgemini.demo.weatherapp.R
+import dagger.android.support.DaggerAppCompatActivity
 
 
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : DaggerAppCompatActivity() {
 
     protected fun replaceFragment(fragment: Fragment?) {
         val fragmentTransaction = supportFragmentManager.beginTransaction()

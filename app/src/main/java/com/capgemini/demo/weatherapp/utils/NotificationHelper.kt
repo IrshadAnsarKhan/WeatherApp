@@ -8,8 +8,9 @@ import android.widget.TextView
 import android.widget.Toast
 import com.capgemini.demo.weatherapp.R
 import com.google.android.material.snackbar.Snackbar
+import javax.inject.Inject
 
-class NotificationHelper {
+class NotificationHelper @Inject constructor(){
 
     fun setSnackBar(root: View?, snackBarMessage: String?) {
         val defaultSnackBarErrorMessage = root!!.context.resources.getString(R.string.error_msg)

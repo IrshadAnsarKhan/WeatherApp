@@ -4,9 +4,10 @@ import android.content.Context
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import javax.inject.Inject
 
 
-class ImageUtils(private val context: Context) {
+class ImageUtils @Inject constructor(private val context: Context) {
 
     fun loadImagesToView(imageView: ImageView, imageUrl: String?) {
         val options: RequestOptions = RequestOptions()

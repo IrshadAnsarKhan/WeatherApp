@@ -1,13 +1,9 @@
 package com.capgemini.demo.weatherapp.details
 
-import android.app.ProgressDialog
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import com.capgemini.demo.weatherapp.R
 import com.capgemini.demo.weatherapp.api_service.WeatherApiRequest
@@ -21,9 +17,20 @@ import com.capgemini.demo.weatherapp.home.ApiRepository
 import com.capgemini.demo.weatherapp.retrofit.WeatherApiRetrofit
 import com.capgemini.demo.weatherapp.utils.ImageUtils
 import com.capgemini.demo.weatherapp.utils.NotificationHelper
+import javax.inject.Inject
 
 
 class DetailsFragment : BaseFragment() {
+
+    @Inject
+    lateinit var weatherApiRetrofit: WeatherApiRetrofit
+
+    @Inject
+    lateinit var notificationHelper: NotificationHelper
+
+    @Inject
+    lateinit var imageUtils: ImageUtils
+
 
     private lateinit var detailsViewModel: DetailsViewModel
     private lateinit var binding: FragmentDetailsBinding
@@ -31,7 +38,7 @@ class DetailsFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val apiRequest = WeatherApiRetrofit().getRetrofitInstance(requireContext())
+        val apiRequest = weatherApiRetrofit.getRetrofitInstance()
             .create(WeatherApiRequest::class.java)
         val apiRepository = ApiRepository(apiRequest)
         val factory = DetailViewModelFactory(apiRepository)
@@ -67,7 +74,7 @@ class DetailsFragment : BaseFragment() {
                 } else {
                     //TODO handle api error here
                     val errorMsgString = resources.getString(R.string.error_msg)
-                    NotificationHelper().setSnackBar(binding.root, errorMsgString)
+                    notificationHelper.setSnackBar(binding.root, errorMsgString)
                 }
             }
     }
@@ -80,7 +87,7 @@ class DetailsFragment : BaseFragment() {
     private fun populateResult(weatherApiResponseModel: WeatherApiResponseModel) {
         val currentCondition = weatherApiResponseModel.data.current_condition[0]
 
-        ImageUtils(requireContext()).loadImagesToView(
+        imageUtils.loadImagesToView(
             binding.imgViewWeatherImage,
             currentCondition.weatherIconUrl[0].value
         )

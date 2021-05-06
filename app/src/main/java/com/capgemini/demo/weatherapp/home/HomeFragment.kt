@@ -33,8 +33,21 @@ import com.capgemini.demo.weatherapp.utils.DataConverter
 import com.capgemini.demo.weatherapp.utils.NotificationHelper
 import com.capgemini.demo.weatherapp.view.MainActivity
 import java.util.*
+import javax.inject.Inject
 
 class HomeFragment : BaseFragment() {
+
+    @Inject
+    lateinit var weatherApiRetrofit: WeatherApiRetrofit
+
+    @Inject
+    lateinit var dbHelper: DatabaseHelperImpl
+
+    @Inject
+    lateinit var dataConverter: DataConverter
+
+    @Inject
+    lateinit var notificationHelper: NotificationHelper
 
     private lateinit var autoSuggestAdapter: AutoSuggestAdapter
     private lateinit var homeViewModel: HomeViewModel
@@ -42,17 +55,14 @@ class HomeFragment : BaseFragment() {
     private val TRIGGER_AUTO_COMPLETE = 100
     private val AUTO_COMPLETE_DELAY: Long = 300
     private var handler: Handler? = null
-    private lateinit var dataConverter: DataConverter
     private lateinit var adapter: RecentSearchRecyclerViewAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // TODO Inject dependency using dagger
-        val apiRequest = WeatherApiRetrofit().getRetrofitInstance(requireContext())
+        val apiRequest = weatherApiRetrofit.getRetrofitInstance()
             .create(WeatherApiRequest::class.java)
         val apiRepository = ApiRepository(apiRequest)
-        val dbHelper = DatabaseHelperImpl(DatabaseBuilder.getInstance(requireContext()))
-        dataConverter = DataConverter()
         val factory = HomeViewModelFactory(apiRepository, dbHelper)
         homeViewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
     }
@@ -147,7 +157,7 @@ class HomeFragment : BaseFragment() {
                 } else {
                     //TODO handle api error here
                     val errorMsgString = resources.getString(R.string.error_msg)
-                    NotificationHelper().setSnackBar(binding.root, errorMsgString)
+                    notificationHelper.setSnackBar(binding.root, errorMsgString)
                 }
             }
     }

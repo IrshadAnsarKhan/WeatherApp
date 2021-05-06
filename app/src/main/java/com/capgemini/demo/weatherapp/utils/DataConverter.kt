@@ -3,8 +3,9 @@ package com.capgemini.demo.weatherapp.utils
 import com.capgemini.demo.weatherapp.datamodel.search.SearchApiResponseModel
 import com.capgemini.demo.weatherapp.datamodel.search.Result
 import com.capgemini.demo.weatherapp.db.model.WeatherRoomDataModel
+import javax.inject.Inject
 
-class DataConverter {
+class DataConverter @Inject constructor() {
     fun convertToSearchModelList(searchApiResponseData: SearchApiResponseModel?): ArrayList<Result>? {
         if (searchApiResponseData != null && searchApiResponseData.search_api != null && searchApiResponseData.search_api.result != null) {
             return searchApiResponseData.search_api.result as ArrayList
@@ -33,7 +34,7 @@ class DataConverter {
     }
 
     fun prepareDisplayIdFromResult(result: Result): String {
-        return result.areaName[0].value + ", " + result.region[0].value + ", " +result.country[0].value
+        return result.areaName[0].value + ", " + result.region[0].value + ", " + result.country[0].value
     }
 
 }
