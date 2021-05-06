@@ -10,6 +10,9 @@
 
     <!--SnackBar-->
     <color name="snack_bar_background_color">#0E273C</color>
+    <color name="fragment_background">#FF000000</color>
 
-    <color name="fragment_background">#FFF</color>
+    <!--CardView-->
+    <color name="card_view_shadow">#260E273C</color>
+    <color name="card_view_fill_color">#FFFFFF</color>
 </resources>

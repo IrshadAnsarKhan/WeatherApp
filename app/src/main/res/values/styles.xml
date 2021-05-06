@@ -3,15 +3,17 @@
 
     <style name="style_text_normal">
         <item name="android:textSize">@dimen/text_title_16</item>
-        <item name="android:textColor">@color/purple_700</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">normal</item>
+        <item name="hintTextColor">@color/white</item>
+        <item name="android:textColorHint">@color/white</item>
         <item name="android:lineSpacingExtra">@dimen/paragraph_space_10</item>
     </style>
 
 
     <style name="style_title_sub_header">
         <item name="android:textSize">@dimen/text_title_20</item>
-        <item name="android:textColor">@color/purple_700</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">bold</item>
         <item name="android:lineSpacingExtra">@dimen/paragraph_space_12</item>
     </style>

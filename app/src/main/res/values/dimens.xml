@@ -22,6 +22,7 @@
     <!--Padding and Margin-->
     <dimen name="page_margin_20">20dp</dimen>
     <dimen name="page_margin_24">24dp</dimen>
+    <dimen name="page_margin_36">36dp</dimen>
     <dimen name="view_margin_16">16dp</dimen>
     <dimen name="view_padding_10">10dp</dimen>
     <dimen name="toolbar_bottom_margin">16dp</dimen>

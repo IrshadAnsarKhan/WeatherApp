@@ -170,11 +170,11 @@ class HomeFragment : BaseFragment() {
     private fun showRecentSearchList(weatherData: List<WeatherRoomDataModel>) {
         adapter = RecentSearchRecyclerViewAdapter(this, weatherData)
         binding.recyclerView.visibility = View.VISIBLE
-        val linearLayoutManager = LinearLayoutManager(requireContext())
+        /*val linearLayoutManager = LinearLayoutManager(requireContext())
         val itemDecoration =
             DividerItemDecoration(requireContext(), linearLayoutManager.orientation)
         binding.recyclerView.layoutManager = linearLayoutManager
-        binding.recyclerView.addItemDecoration(itemDecoration)
+        binding.recyclerView.addItemDecoration(itemDecoration)*/
         binding.tvNoData.visibility = View.GONE
         binding.recyclerView.adapter = adapter
         adapter.notifyDataSetChanged()

@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fragment_background"
+    android:background="@drawable/bg_12"
     android:gravity="top|center_horizontal"
     android:padding="@dimen/page_margin_24">
 
@@ -10,7 +10,7 @@
         android:id="@+id/llytWeatherImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/page_margin_24"
+        android:layout_marginTop="@dimen/page_margin_36"
         android:layout_marginBottom="@dimen/page_margin_24"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
@@ -27,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/llytWeatherImage"
-        android:layout_marginTop="@dimen/view_padding_10"
+        android:layout_marginTop="@dimen/page_margin_24"
         android:orientation="horizontal">
 
         <TextView

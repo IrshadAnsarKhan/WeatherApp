@@ -22,4 +22,8 @@ class MainActivity : BaseActivity() {
      public override fun addFragment(fragment: Fragment) {
         super.addFragment(fragment)
     }
+
+    fun setStatusBarGreen() {
+        super.setStatusBar(resources.getColor(R.color.fragment_background))
+    }
 }

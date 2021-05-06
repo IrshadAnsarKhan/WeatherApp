@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center_vertical"
-    android:padding="@dimen/view_padding_10">
+    card_view:cardBackgroundColor="@color/card_view_fill_color"
+    card_view:cardCornerRadius="@dimen/card_view_radius"
+    card_view:cardElevation="@dimen/card_view_elevation_info_layout"
+    card_view:cardPreventCornerOverlap="false"
+    card_view:cardUseCompatPadding="true"
+    tools:ignore="RtlCompat">
 
-    <TextView
-        android:id="@+id/tvCityName"
-        style="@style/style_text_title_black"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:text="PuneIndia" />
+        android:gravity="center_vertical"
+        android:padding="@dimen/view_padding_10">
 
-    <ImageView
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_marginEnd="@dimen/view_padding_10"
-        android:src="@mipmap/right_icon"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/view_padding_10" />
+        <TextView
+            android:id="@+id/tvCityName"
+            style="@style/style_text_title_black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="PuneIndia" />
 
-</RelativeLayout>
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="@dimen/view_padding_10"
+            android:layout_marginRight="@dimen/view_padding_10"
+            android:src="@mipmap/right_icon" />
+
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

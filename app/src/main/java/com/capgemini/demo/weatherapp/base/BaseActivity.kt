@@ -1,7 +1,9 @@
 package com.capgemini.demo.weatherapp.base
 
 
+import android.os.Build
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import com.capgemini.demo.weatherapp.R
@@ -32,5 +34,14 @@ open class BaseActivity : DaggerAppCompatActivity() {
             view = View(this)
         }
         imm.hideSoftInputFromWindow(view.windowToken, 0)
+    }
+
+    protected open fun setStatusBar(color: Int) {
+        // Color must be in hexadecimal fromat
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val window = window
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window.statusBarColor = color
+        }
     }
 }
